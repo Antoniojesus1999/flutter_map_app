@@ -13,7 +13,7 @@ class GpsAccessScreen extends StatelessWidget {
         child: BlocBuilder<GpsBloc, GpsState>(
           builder: (context, state) {
             print('state -> $state');
-            return !state.isGpsPermissionGranted
+            return !state.isGpsEnabled
                 ? const _EnableGpsMessage()
                 : const _AccessBotton();
           },
@@ -33,7 +33,11 @@ class _AccessBotton extends StatelessWidget {
       children: [
         const Text('Es necesario el acceso al GPS'),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            final gpsBloc = BlocProvider.of<GpsBloc>(context);
+            //final gpsBloc = context.read<GpsBloc>();
+            gpsBloc.askGpsAccess();
+          },
           color: Colors.black,
           shape: const StadiumBorder(),
           elevation: 0,
