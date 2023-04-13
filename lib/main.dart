@@ -6,7 +6,8 @@ import 'package:flutter_map_app/screens/screens.dart';
 void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => GpsBloc()),
-    BlocProvider(create: (context) => LocationBloc())
+    BlocProvider(create: (context) => LocationBloc()),
+    BlocProvider(create: (context) => MapBloc()),
   ], child: const MapsApp()));
 }
 
